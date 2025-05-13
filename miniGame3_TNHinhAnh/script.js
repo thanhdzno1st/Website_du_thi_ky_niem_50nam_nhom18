@@ -292,7 +292,7 @@ function loadQuestion() {
     feedbackElement.className = 'feedback';
     feedbackElement.textContent = '';
     nextBtn.classList.add('hidden');
-    
+    returnButtons[0].classList.add('hidden');
     // Update progress
     currentQuestionElement.textContent = currentQuestionIndex + 1;
     progressBar.style.width = `${((currentQuestionIndex + 1) / quizData.length) * 100}%`;
@@ -363,6 +363,7 @@ function timeUp() {
         feedbackElement.className = 'feedback incorrect';
         feedbackElement.textContent = 'Hết giờ! Bạn không chọn đáp án.';
         nextBtn.classList.remove('hidden');
+        returnButtons[0].classList.remove('hidden');
     }
 }
 
@@ -395,6 +396,7 @@ function selectAnswer(selectedIndex, options) {
     
     // Show next button
     nextBtn.classList.remove('hidden');
+    returnButtons[0].classList.remove('hidden');
 }
 
 // Show the correct answer

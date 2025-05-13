@@ -30,7 +30,7 @@ body::before {
     top: 0; left: 0; right: 0; bottom: 0;
     background-image: 
         /* linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), */
-        url('https://img.tripi.vn/cdn-cgi/image/width=700,height=700/https://gcs.tripi.vn/public-tripi/tripi-feed/img/482643gIz/anh-mo-ta.png');
+        url('./images/anh-mo-ta.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -159,9 +159,9 @@ main {
 .timeline:before {
     content: "";
     position: absolute;
-    top: 60%;
-    left: 0;
-    right: 0;
+    top: 65%;
+    left: 15px;
+    right: 15px;
     height: 4px;
     background-color: var(--primary-color);
     transform: translateY(-50%);
@@ -176,10 +176,11 @@ main {
     z-index: 1;
 }
 .timeline-point img{
-       width: 50px !important;
-    height: 50px !important;
+       width: 80px !important;
+    height: 80px !important;
     border-radius: 100%;
     margin-bottom: 8px;
+      transition: var(--transition);
 }
 .year-marker {
     padding: 5px 10px;
@@ -209,7 +210,9 @@ main {
     background-color: var(--accent-color);
     transform: scale(1.2);
 }
-
+.timeline-point:hover img {
+    transform: scale(1.1);
+}
 .timeline-point.completed .event-dot {
     background-color: var(--accent-color);
 }

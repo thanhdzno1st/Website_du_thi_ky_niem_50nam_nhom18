@@ -550,3 +550,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+document.getElementById("return-home-btn").addEventListener("click", function() {
+        window.location.href = "../index.html";
+})

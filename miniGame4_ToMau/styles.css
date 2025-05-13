@@ -420,7 +420,10 @@ footer {
     background-color: #e0b800;
     transform: translateY(-2px);
 }
-
+#return-home-btn {
+    background-color: #cacaca;
+    transition: filter 0.2s ease;
+}
 /* Animation */
 @keyframes pulse {
     0% { transform: scale(1); }

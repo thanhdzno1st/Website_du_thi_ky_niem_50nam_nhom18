@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giải Mã Di Sản - Phòng Thoát Hiểm Lịch Sử</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-image">
+        <div class="game-container">
+            <!-- Start Screen -->
+            <div id="start-screen" class="start-screen">
+                <h1><i class="fas fa-key"></i> Giải Mã Di Sản</h1>
+                <p class="intro-text">Bạn đang ở trong một căn phòng chứa đầy ký ức của một giai đoạn quan trọng trong lịch sử. Nhiệm vụ của bạn là giải mã các bí ẩn để thoát khỏi phòng!</p>
+                <button id="start-game-btn" class="start-btn"><i class="fas fa-play"></i> Bắt Đầu Trò Chơi</button>
+            </div>
+            
+            <!-- Main Game Container (hidden initially) -->
+            <div id="main-game-container" style="display:none;">
+
+                <div class="game-header">
+                    
+                    <h1><i class="fas fa-key"></i> Giải Mã Di Sản</h1>
+                    <div class="game-status">
+                        <span id="timer">Thời Gian: 60:00</span>
+                        <span id="clues-left">Gợi Ý: 3</span>
+                        <span class="return-home-btn"><i class="fas fa-home"></i></span>
+                    </div>
+
+                </div>
+                
+                <div id="game-screen" class="game-screen">
+
+                    <div class="room-description" id="room-description">
+                        <h2 id="room-title"></h2>
+                        <p id="room-intro"></p>
+                    </div>
+                    <div class="feedback-area" id="feedback-area">
+                        <p id="feedback-text"></p>
+                    </div>
+                    <div class="puzzle-area" id="puzzle-area">
+                        <div class="document-display" id="document-display">
+                            <img src="/api/placeholder/400/300" alt="Tài liệu lịch sử" id="document-image">
+                        </div>
+                        
+                        <div class="puzzle-input">
+                            <input type="text" id="answer-input" placeholder="Nhập câu trả lời của bạn">
+                            <button id="submit-answer"><i class="fas fa-check-circle"></i> Kiểm Tra</button>
+                            <button id="use-clue"><i class="fas fa-lightbulb"></i> Gợi Ý</button>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+            
+            <!-- Modals -->
+            <div class="modal" id="clue-modal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h3><i class="fas fa-lightbulb"></i> Gợi Ý</h3>
+                    <p id="clue-text"></p>
+                </div>
+            </div>
+            
+            <div class="modal" id="success-modal">
+                <div class="modal-content">
+                    <h3><i class="fas fa-trophy"></i> Chúc Mừng!</h3>
+                    <p>Bạn đã giải mã thành công phòng này!</p>
+                    <div id="video-player-container" style="display:none;"></div>
+                    <button class="return-home-btn"><i class="fas fa-home"></i> Trang chủ</button>
+                    <button id="next-room"><i class="fas fa-door-open"></i> Chuyển Phòng Tiếp Theo</button>
+                </div>
+            </div>
+            
+            <div class="modal" id="game-over-modal">
+                <div class="modal-content">
+                    <h3><i class="fas fa-hourglass-end"></i> Hết Thời Gian!</h3>
+                    <p>Rất tiếc, bạn đã không thể giải mã phòng này trong thời gian quy định.</p>
+                    <button id="restart-game"><i class="fas fa-redo"></i> Chơi Lại</button>
+                </div>
+            </div>
+            
+            <!-- Game Complete Modal with Celebration Effects -->
+            <div class="modal" id="game-complete-modal">
+                <div class="modal-content celebration">
+                    <h3><i class="fas fa-medal"></i> Chiến Thắng!</h3>
+                    <p>Bạn đã giải mã thành công tất cả các phòng và hoàn thành cuộc phiêu lưu lịch sử!</p>
+                    <div class="celebration-effects">
+                        <div class="confetti-container"></div>
+                        <div class="fireworks">
+                            <div class="firework"></div>
+                            <div class="firework"></div>
+                            <div class="firework"></div>
+                        </div>
+                    </div>
+                    <button class="return-home-btn"><i class="fas fa-home"></i> Trang chủ</button>
+                    <button id="play-again"><i class="fas fa-redo"></i> Chơi Lại</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

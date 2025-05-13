@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hành trình 50 năm - Dấu ấn Tự hào</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+            <div class="logo-container">
+                <img src="https://png.pngtree.com/png-clipart/20240404/ourmid/pngtree-labor-day-yellow-worker-png-image_12249839.png" alt="Logo Kỷ niệm 50 năm" class="logo">
+                <h1>Hành trình 50 năm - Dấu ấn Tự hào</h1>
+            </div>
+            <div class="user-info">
+                <span id="user-score">Điểm: 0</span>
+                <span id="user-badge">Huy hiệu: Chưa có</span>
+            </div>
+    </header>
+    <div class="container">
+
+
+        <main>
+            <section id="intro-section" class="active-section">
+                <div class="intro-content">
+                    <h2>Chào mừng bạn đến với Hành trình 50 năm!</h2>
+                    <p>Hãy cùng khám phá hành trình 50 năm giải phóng đất nước (1975-2025) và tìm hiểu về Bác Hồ kính
+                        yêu qua các thử thách thú vị.</p>
+                    <button id="start-game" class="btn-primary">Bắt đầu hành trình</button>
+                </div>
+            </section>
+
+            <section id="map-section" class="hidden-section">
+                <div class="map-container">
+                    <h2>Chọn một hành trình bất kì và hoàn thành các thử thách trong hành trình đó</h2>
+                    <img src="https://cms.piklab.vn/resources/Tai%20nguyen%20Piklab/Piklab%20share%20file/vietnam%20map%201.jpg" alt="Bản đồ Việt Nam" class="vietnam-map">
+
+                    <div class="timeline">
+                        <div class="timeline-point" data-year="1975">
+                            <img src="https://nghiencuuquocte.org/wp-content/uploads/2023/04/30.jpg">
+                            <div class="year-marker">1975</div>
+                            <div class="event-dot"></div>
+                        </div>
+                        <div class="timeline-point" data-year="1985">
+                            <img src="https://live.staticflickr.com/7006/6788952175_fe6945d2f1_b.jpg">
+                            <div class="year-marker">1985</div>
+                            <div class="event-dot"></div>
+                        </div>
+                        <div class="timeline-point" data-year="1995">
+                            <img src="https://media.urbanistnetwork.com/saigoneer/article-images/2018/11/Nov14/andy-tarica/Vietnam1995-1b.jpg">
+                            <div class="year-marker">1995</div>
+                            <div class="event-dot"></div>
+                        </div>
+                        <div class="timeline-point" data-year="2005">
+                            <img src="https://live.staticflickr.com/35/101503866_11b386d109_b.jpg">
+                            <div class="year-marker">2005</div>
+                            <div class="event-dot"></div>
+                        </div>
+                        <div class="timeline-point" data-year="2015">
+                            <img src="https://st2.depositphotos.com/5710600/8639/i/950/depositphotos_86398862-stock-photo-ho-chi-minh-city-vietnam.jpg">
+                            <div class="year-marker">2015</div>
+                            <div class="event-dot"></div>
+                        </div>
+                        <div class="timeline-point" data-year="2025">
+                            <img src="https://innoviet.com/upload/2025/vietnams-reunification---a-grand-national-celebration-in-ho-chi-minh-city----innoviet-travel.jpg">
+                            <div class="year-marker">2025</div>
+                            <div class="event-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="challenge-section" class="hidden-section">
+                <div class="challenge-container">
+                    <h2 id="challenge-title">Thử thách</h2>
+                    <div id="challenge-content">
+                        <!-- Challenge content will be inserted here -->
+                    </div>
+                    <div class="challenge-buttons">
+                        <button id="submit-answer" class="btn-primary">Nộp đáp án</button>
+                        <button id="back-to-map" class="btn-secondary">Quay lại bản đồ</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="result-section" class="hidden-section">
+                <div class="result-container">
+                    <h2>Kết quả hành trình của bạn</h2>
+                    <div class="result-stats">
+                        <p>Tổng điểm: <span id="final-score">0</span></p>
+                        <p>Huy hiệu đạt được: <span id="final-badge">Chưa có</span></p>
+                    </div>
+                    <div class="badge-display">
+                        <img id="badge-image" src="/api/placeholder/200/200" alt="Huy hiệu" class="hidden">
+                    </div>
+                    <div class="share-buttons">
+                        <button class="share-btn facebook"><i class="fab fa-facebook-f"></i> Chia sẻ Facebook</button>
+                        <button class="share-btn zalo"><i class="fas fa-comment"></i> Chia sẻ Zalo</button>
+                    </div>
+                    <button id="restart-game" class="btn-primary">Chơi lại</button>
+                </div>
+            </section>
+        </main>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2 id="modal-title"></h2>
+                <div id="modal-content"></div>
+                <div class="modal-buttons">
+                    <button id="modal-button" class="btn-primary">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Kỷ niệm 135 năm ngày sinh Chủ tịch Hồ Chí Minh và 50 năm giải phóng đất nước Việt Nam (1975-2025)
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

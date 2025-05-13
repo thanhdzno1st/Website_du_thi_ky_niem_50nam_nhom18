@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm hình ảnh đúng - Trắc nghiệm trực quan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="background-overlay"></div>
+    <div class="container">
+        <header>
+            <img src="https://cdn.pixabay.com/photo/2021/01/15/21/03/star-5920476_1280.png">
+            <div class="header-main">
+                <h1>📸 Tìm hình ảnh đúng</h1>
+                <p class="subtitle">Trắc nghiệm trực quan - Kiến thức lịch sử</p>
+            </div>
+        </header>
+
+        <div class="game-container">
+            <div class="stats">
+                <div class="progress-container">
+                    <div class="progress-label">Câu hỏi: <span id="current-question">1</span>/<span
+                            id="total-questions">10</span></div>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress-bar"></div>
+                    </div>
+                </div>
+                <div class="score-container">
+                    <div class="score">Điểm: <span id="score">0</span></div>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <h2 id="question">Đang tải câu hỏi...</h2>
+                <div class="timer" id="timer">30</div>
+            </div>
+
+            <div class="images-grid" id="images-grid">
+                <!-- Images will be inserted here by JavaScript -->
+            </div>
+
+            <div class="feedback" id="feedback">
+                <!-- Feedback message will appear here -->
+            </div>
+
+            <div class="controls">
+                <button id="next-btn" class="hidden">Câu tiếp theo</button>
+            </div>
+        </div>
+
+        <div class="result-container hidden" id="result-container">
+            <h2>Kết quả của bạn</h2>
+            <div class="result-details">
+                <p>Số câu đúng: <span id="correct-answers">0</span>/<span id="total-answered">0</span></p>
+                <p>Điểm số: <span id="final-score">0</span></p>
+            </div>
+            <div class="result-message" id="result-message">
+                <!-- Result message will appear here -->
+            </div>
+            <button class="return-home-btn"><i class="fas fa-home"></i> Trang chủ</button>
+            <button id="restart-btn">Chơi lại</button>
+        </div>
+
+        <div id="start-screen" class="start-screen">
+            <div class="start-content">
+                <h2>Chào mừng đến với Trò chơi Tìm hình ảnh đúng!</h2>
+                <p>Hãy chọn một trong ba hình ảnh đúng với câu hỏi hiển thị.</p>
+                <p>Bạn có 30 giây để trả lời mỗi câu hỏi.</p>
+                <button id="start-btn">Bắt đầu</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

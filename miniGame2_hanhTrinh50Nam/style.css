@@ -36,6 +36,21 @@ body::before {
     background-position: center;
     z-index: -1;
 }
+.return-home-btn {
+    position: absolute;
+    width: 80px;
+    padding: 8px 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    text-align: center;
+    top: 10px;
+    left: 10px;
+}
+.return-home-btn{
+    cursor: pointer;
+}
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -90,6 +105,7 @@ footer p{
 
 /* Main Content Styles */
 main {
+    position: relative;
     margin-top: 30px;
     flex: 1;
     display: flex;

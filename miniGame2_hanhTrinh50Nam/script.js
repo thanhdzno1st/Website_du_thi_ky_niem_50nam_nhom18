@@ -391,7 +391,14 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         } else {
             // Show incorrect feedback with correct answer
-            showModal('Trả lời sai', `Đáp án đúng là: ${correctOptionText}<br><br>${challenge.feedback}`);
+            let modalMessage = `Đáp án đúng là: ${correctOptionText}<br><br>${challenge.feedback}`;
+            
+            // Add completion message if this was the last challenge of the year
+            if (isLastChallengeInYear && allCompleted) {
+                modalMessage += `<br><br>Đã hoàn thành tất cả thử thách cho năm ${year}!`;
+            }
+            
+            showModal('Trả lời sai', modalMessage);
             
             // Always move to next challenge or back to map if it was the last one
             const nextChallengeIndex = challengeIndex + 1;
@@ -534,6 +541,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialize the game
     updateScoreDisplay();
 });
+
+
 
 
 // Challenge data

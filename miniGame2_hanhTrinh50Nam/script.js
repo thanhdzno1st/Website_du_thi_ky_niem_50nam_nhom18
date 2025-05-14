@@ -635,7 +635,7 @@ const challenges = {
         {
             type: "video",
             title: "Phát triển kinh tế",
-            videoPlaceholder: "./miniGame2_hanhTrinh50Nam/videos/video2.mp4",
+            videoPlaceholder: "./videos/video2.mp4",
             question: "Đây là video quay từ năm 2005, hỏi nội dung của video nói về sự kiện gì",
             options: [
                 "Diễu binh mừng Quốc khánh tại Hà Nội",

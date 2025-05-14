@@ -560,7 +560,7 @@ const challenges = {
         {
             type: "video",
             title: "Chặng đường phục hồi",
-            videoPlaceholder: "/miniGame2_hanhTrinh50Nam/videos/video1.mp4",
+            videoPlaceholder: "./miniGame2_hanhTrinh50Nam/videos/video1.mp4",
             question: "Theo video, sự kiện năm 1985 được nhắc tới là gì",
             options: [
                 "Diễu binh mừng 10 năm thống nhất đất nước",

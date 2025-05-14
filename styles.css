@@ -237,6 +237,14 @@ footer {
     padding: 2rem 1rem;
     text-align: left;
 }
+footer a, a:visited,
+a:active,
+a:hover,
+a:focus{
+    text-decoration: none;
+    color: white;
+
+}
 
 .footer-content {
     max-width: 1200px;
@@ -377,4 +385,10 @@ footer {
 }
 .gallery-section p{
     margin-bottom: 20px;
+}
+.gallery-img video {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
 }

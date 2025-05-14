@@ -7,7 +7,7 @@ const gameData = {
     badges: {
         "0-100": "Người mới tìm hiểu",
         "101-250": "Người yêu lịch sử",
-        "251-350": "Nhà sử học trẻ",
+        "251-350": "Sử gia nghiệp dư",
         "351-450": "Chuyên gia lịch sử",
         "451-550": "Anh hùng lịch sử"
     }
@@ -240,6 +240,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let isCorrect = false;
         let selectedOption = -1;
+        let correctOptionText = '';
 
         switch (challenge.type) {
             case 'quiz':
@@ -256,6 +257,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 isCorrect = (selectedOption === challenge.correctAnswer);
+                correctOptionText = challenge.options[challenge.correctAnswer];
                 break;
 
             case 'puzzle':
@@ -277,7 +279,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 const correctPieces = challenge.correctAnswer;
                 isCorrect = selectedIndices.length === correctPieces.length &&
                     correctPieces.every(index => selectedIndices.includes(index));
-
+                
+                correctOptionText = `Các hình ảnh đúng là: ${correctPieces.map(i => i + 1).join(', ')}`;
                 break;
             case 'img':
                 // Lấy ảnh đang được chọn
@@ -294,6 +297,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // So sánh với đáp án đúng
                 isCorrect = selectedIndex === challenge.correctAnswer;
+                correctOptionText = `Hình ảnh đúng là hình ${challenge.correctAnswer + 1}`;
                 break;
 
 
@@ -311,30 +315,36 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 isCorrect = (selectedOption === challenge.correctAnswer);
+                correctOptionText = challenge.options[challenge.correctAnswer];
                 break;
         }
 
-        // Award points and mark challenge as completed
+        // Mark challenge as completed regardless of correctness
+        gameData.completedChallenges.push(`${year}-${challengeIndex}`);
+        
+        // Award points only if answer is correct
         if (isCorrect) {
             gameData.score += challenge.points;
-            gameData.completedChallenges.push(`${year}-${challengeIndex}`);
             updateScoreDisplay();
+        }
 
-            // Check if all challenges for this year are completed
-            const yearChallenges = challenges[year];
-            const allCompleted = yearChallenges.every((challenge, idx) =>
-                gameData.completedChallenges.includes(`${year}-${idx}`)
-            );
+        // Check if all challenges for this year are completed
+        const yearChallenges = challenges[year];
+        const allCompleted = yearChallenges.every((challenge, idx) =>
+            gameData.completedChallenges.includes(`${year}-${idx}`)
+        );
 
-            if (allCompleted) {
-                // Mark the year as completed on the timeline
-                document.querySelector(`.timeline-point[data-year="${year}"]`).classList.add('completed');
-            }
+        if (allCompleted) {
+            // Mark the year as completed on the timeline
+            document.querySelector(`.timeline-point[data-year="${year}"]`).classList.add('completed');
+        }
 
-            // Check if this was the last challenge in the year
-            const isLastChallengeInYear = challengeIndex === yearChallenges.length - 1;
+        // Check if this was the last challenge in the year
+        const isLastChallengeInYear = challengeIndex === yearChallenges.length - 1;
 
-            // Show feedback
+        // Set up next steps based on correctness
+        if (isCorrect) {
+            // Show success feedback
             if (isLastChallengeInYear && allCompleted) {
                 // This was the last challenge for this year
                 showModal('Chính xác!', `${challenge.feedback}<br><br>Bạn nhận được ${challenge.points} điểm!<br><br>Đã hoàn thành tất cả thử thách cho năm ${year}!`);
@@ -369,28 +379,59 @@ document.addEventListener('DOMContentLoaded', function () {
                     };
                 } else {
                     // All challenges for this year completed
-                    modalBtn.onclick = closeModal;
-                    closeModalBtn.onclick = closeModal;
+                    modalBtn.onclick = function() {
+                        closeModal();
+                        goBackToMap();
+                    };
+                    closeModalBtn.onclick = function() {
+                        closeModal();
+                        goBackToMap();
+                    };
                 }
             }
-
-            // Check if all challenges are completed
-            const allChallengesCompleted = Object.keys(challenges).every(yr => {
-                return challenges[yr].every((challenge, idx) =>
-                    gameData.completedChallenges.includes(`${yr}-${idx}`)
-                );
-            });
-
-            if (allChallengesCompleted) {
-                setTimeout(() => {
-                    showGameResults();
-                }, 1500);
-            }
         } else {
-            showModal('Chưa chính xác', 'Hãy thử lại! Bạn có thể xem lại nội dung để tìm đáp án đúng.');
-            // Keep default close behavior for incorrect answers
-            modalBtn.onclick = closeModal;
-            closeModalBtn.onclick = closeModal;
+            // Show incorrect feedback with correct answer
+            showModal('Trả lời sai', `Đáp án đúng là: ${correctOptionText}<br><br>${challenge.feedback}`);
+            
+            // Always move to next challenge or back to map if it was the last one
+            const nextChallengeIndex = challengeIndex + 1;
+            if (nextChallengeIndex < challenges[year].length) {
+                // Move to next challenge
+                modalBtn.onclick = function () {
+                    closeModal();
+                    gameData.currentChallengeIndex = nextChallengeIndex;
+                    loadChallenge(year, nextChallengeIndex);
+                };
+
+                closeModalBtn.onclick = function () {
+                    closeModal();
+                    gameData.currentChallengeIndex = nextChallengeIndex;
+                    loadChallenge(year, nextChallengeIndex);
+                };
+            } else {
+                // It was the last challenge, go back to map
+                modalBtn.onclick = function() {
+                    closeModal();
+                    goBackToMap();
+                };
+                closeModalBtn.onclick = function() {
+                    closeModal();
+                    goBackToMap();
+                };
+            }
+        }
+
+        // Check if all challenges are completed
+        const allChallengesCompleted = Object.keys(challenges).every(yr => {
+            return challenges[yr].every((challenge, idx) =>
+                gameData.completedChallenges.includes(`${yr}-${idx}`)
+            );
+        });
+
+        if (allChallengesCompleted) {
+            setTimeout(() => {
+                showGameResults();
+            }, 1500);
         }
     }
 
@@ -493,6 +534,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initialize the game
     updateScoreDisplay();
 });
+
 
 // Challenge data
 const challenges = {
@@ -861,3 +903,10 @@ const challenges = {
        
     ]
 };
+const returnButtons = document.getElementsByClassName("return-home-btn");
+
+for (let i = 0; i < returnButtons.length; i++) {
+    returnButtons[i].addEventListener("click", function () {
+        window.location.href = "../index.html";
+    });
+}
